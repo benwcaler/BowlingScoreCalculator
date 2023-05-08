@@ -14,13 +14,10 @@ namespace BowlingScoreCalculator.UI
 {
     public class GameViewViewModel : BaseComponent
     {
-        private readonly MainWindowViewModel _mainWindowViewModel = InjectorProvider.Get<MainWindowViewModel>();
-        private readonly NewGameViewModel _newGameViewModel = InjectorProvider.Get<NewGameViewModel>();
         private ObservableCollection<Player> _players;
         private SimpleCommand _bowlCommand;
         private Player _currentPlayer;
         private bool _gameOver;
-        private SimpleCommand _newGameCommand;
 
         public ObservableCollection<Player> Players
         {
@@ -161,20 +158,6 @@ namespace BowlingScoreCalculator.UI
                 NotifyChanged();
                 NotifyChanged(nameof(NewGameVisibility));
             }
-        }
-
-        public SimpleCommand NewGameCommand
-        {
-            get => _newGameCommand ??= new()
-            {
-                CanExecuteDelegate = x => true,
-                ExecuteDelegate = x =>
-                {
-                    Players.Clear();
-                    _newGameViewModel.NewPlayers.Clear();
-                    _mainWindowViewModel.ShowControl("NewGame");
-                }
-            };
         }
 
         public Visibility NewGameVisibility
