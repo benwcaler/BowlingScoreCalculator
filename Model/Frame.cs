@@ -124,7 +124,8 @@ namespace BowlingScoreCalculator.Model
             get
             {
                 if (DeliveryOne + DeliveryTwo == 10) return "/";
-                else if (DeliveryOne == 10) return "X";
+                else if (DeliveryOne == 10 && !Tenth) return "X";
+                else if (DeliveryTwo == 10 && Tenth) return "X";
                 else return DeliveryTwo is not null ? DeliveryTwo.ToString() : string.Empty;
             }
         }

@@ -46,14 +46,17 @@ namespace BowlingScoreCalculator.UI
                     if (frame.FrameStatus == Frame.Status.DeliveryOne)
                     {
                         frame.DeliveryOne = new Random().Next(11);
+                        //frame.DeliveryOne = 10;
                     }
                     else if (frame.FrameStatus == Frame.Status.DeliveryTwo)
                     {
                         frame.DeliveryTwo = new Random().Next(frame.DeliveryOne != 10 ? (10 - frame.DeliveryOne.Value) + 1 : 11);
+                        //frame.DeliveryTwo = 10;
                     }
                     else if (frame.FrameStatus == Frame.Status.DeliveryThree)
                     {
                         frame.DeliveryThree = new Random().Next(frame.DeliveryTwo != 10 ? (10 - frame.DeliveryTwo.Value) + 1 : 11);
+                        //frame.DeliveryThree = 10;
                     }
                     int indexOfFrame = frameIndex;
                     Frame twoFramesAgo = indexOfFrame > 1 ? CurrentPlayer.Frames[indexOfFrame - 2] : null;
