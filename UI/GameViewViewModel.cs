@@ -14,8 +14,8 @@ namespace BowlingScoreCalculator.UI
 {
     public class GameViewViewModel : BaseComponent
     {
-        MainWindowViewModel _mainWindowViewModel = InjectorProvider.Get<MainWindowViewModel>();
-        NewGameViewModel _newGameViewModel = InjectorProvider.Get<NewGameViewModel>();
+        private readonly MainWindowViewModel _mainWindowViewModel = InjectorProvider.Get<MainWindowViewModel>();
+        private readonly NewGameViewModel _newGameViewModel = InjectorProvider.Get<NewGameViewModel>();
         private ObservableCollection<Player> _players;
         private SimpleCommand _bowlCommand;
         private Player _currentPlayer;
@@ -165,7 +165,7 @@ namespace BowlingScoreCalculator.UI
 
         public SimpleCommand NewGameCommand
         {
-            get => new()
+            get => _newGameCommand ??= new()
             {
                 CanExecuteDelegate = x => true,
                 ExecuteDelegate = x =>
